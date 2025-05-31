@@ -24,10 +24,7 @@ It is an Android note-taking app designed for reliability and productivity, feat
 
 #### Architecture:
 
-- Modularization (`:app`, `:core:common`, `:core:db`, `:core:utils`, `:core:viewmodel`,
-  `:core:designsystem`, `:core:navigation`, `:feature:notes:api`, `:feature:notes:impl`,
-  `:feature:note:api`, `:feature:note:impl`, `:feature:folders:api`, `:feature:folders:impl`,
-  `:feature:auth:api`, `:feature:auth:impl`)
+- Modularization (`:shared:commonAndroid`, `:shared:commonMain`; android: `:app`, `:core:designsystem`, `:core:navigation`, `:feature:notes:impl`, `:feature:note:impl`, `:feature:folders:api`, `:feature:folders:impl`, `:feature:auth:impl`;)
 - MVI
 - DI (Koin)
 
@@ -52,10 +49,7 @@ It is an Android note-taking app designed for reliability and productivity, feat
 - Firebase Platform:
     - Auth (via Email)
     - Crashlytics
-    - Performance Monitoring
 
 #### DevOps & Code Quality:
 
-- CI/CD: GitHub Actions (Automated builds, tests)
-- Static Analysis: Detekt
 - Performance: Firebase Performance Monitoring
