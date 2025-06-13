@@ -8,19 +8,20 @@ import com.example.notes.impl.presentation.model.NotesContract.Event
 import com.example.notes.impl.presentation.model.NotesContract.UiState
 import com.example.notes.impl.presentation.ui.NOTES_SCREEN_TAG
 import com.example.shared.core.utils.resource.TimeUtil
+import com.example.shared.feature.note.ui.models.NoteItemUiModel
 import com.example.shared.feature.notes.domain.usecase.CreateNoteUseCase
 import com.example.shared.feature.notes.domain.usecase.GetNotesByFolderIdUseCase
+import com.example.shared.feature.notes.ui.NotesViewModel
 import com.example.shared.mapper.toDomain
 import com.example.shared.mapper.toUi
-import com.example.shared.models.NoteItemUiModel
 import kotlinx.coroutines.launch
 
-class NotesViewModel(
+class NotesViewModelImpl(
     private val getNotesByFolderIdUseCase: GetNotesByFolderIdUseCase,
     private val createNoteUseCase: CreateNoteUseCase,
     private val folderId: String,
 ) :
-    BaseViewModel<Event, UiState, Effect>() {
+    BaseViewModel<Event, UiState, Effect>(), NotesViewModel {
 
     init {
         getNotesData(folderId)
@@ -51,9 +52,9 @@ class NotesViewModel(
         }
     }
 
-    private fun createNewNote(
+    override fun createNewNote(
         note: NoteItemUiModel,
-        isSync: Boolean = false,
+        isSync: Boolean,
     ) {
         viewModelScope.launch {
             val currentTime = TimeUtil.currentTimeUtc()
@@ -77,7 +78,7 @@ class NotesViewModel(
         }
     }
 
-    private fun getNotesData(folderId: String) {
+    override fun getNotesData(folderId: String) {
 
         viewModelScope.launch {
             setState { copy(isLoading = true, isError = false) }

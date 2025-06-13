@@ -11,12 +11,13 @@ import com.example.feature.folders.impl.presentation.model.FoldersContract.UiSta
 import com.example.feature.folders.impl.presentation.ui.FOLDER_SCREEN_TAG
 import com.example.shared.feature.folders.domain.usecase.CreateFolderUseCase
 import com.example.shared.feature.folders.domain.usecase.GetAllFoldersUseCase
+import com.example.shared.feature.folders.ui.FoldersViewModel
 import kotlinx.coroutines.launch
 
-class FoldersViewModel(
+class FoldersViewModelImpl(
     private val getAllFoldersUseCase: GetAllFoldersUseCase,
     private val createFolderUseCase: CreateFolderUseCase,
-) : BaseViewModel<Event, UiState, Effect>() {
+) : BaseViewModel<Event, UiState, Effect>(), FoldersViewModel {
 
     init {
         getFoldersData()
@@ -45,7 +46,7 @@ class FoldersViewModel(
         }
     }
 
-    private fun createNewFolder(folderName: String, isSync: Boolean) {
+    override fun createNewFolder(folderName: String, isSync: Boolean) {
 
         viewModelScope.launch {
             setState { copy(isLoading = true, isError = false) }
@@ -97,7 +98,7 @@ class FoldersViewModel(
 
     }
 
-    private fun getFoldersData() {
+    override fun getFoldersData() {
         viewModelScope.launch {
             setState { copy(isLoading = true, isError = false) }
             getAllFoldersUseCase.invoke()

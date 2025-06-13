@@ -4,7 +4,7 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val authPresentationModule = module {
-    viewModel { SignInViewModel(get(), get(), get()) }
-    viewModel { SignUpViewModel(get(), get(), get(), get()) }
+    viewModel { SignInViewModelImpl(get(), get(), get()) }
+    viewModel { SignUpViewModelImpl(get(), get(), get(), get()) }
 
 }

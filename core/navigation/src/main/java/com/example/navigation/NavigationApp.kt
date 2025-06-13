@@ -10,7 +10,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.auth.impl.presentation.SignInViewModel
+import com.example.auth.impl.presentation.SignInViewModelImpl
 import com.example.navigation.Navigation.Args.FOLDERS
 import com.example.navigation.Navigation.Args.FOLDER_ID
 import com.example.navigation.Navigation.Args.NOTES
@@ -32,7 +32,7 @@ import org.koin.androidx.compose.koinViewModel
 fun NavigationApp() {
 
     val navController = rememberNavController()
-    val authViewModel: SignInViewModel = koinViewModel()
+    val authViewModel: SignInViewModelImpl = koinViewModel()
 
     val authUserId by authViewModel.userId.collectAsState()
 

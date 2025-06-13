@@ -9,17 +9,18 @@ import com.example.impl.presentation.model.NoteContract.UiState
 import com.example.shared.feature.folders.data.model.FolderModel
 import com.example.shared.feature.note.domain.usecase.GetNoteByIdUseCase
 import com.example.shared.feature.note.domain.usecase.UpdateNoteUseCase
+import com.example.shared.feature.note.ui.NoteViewModel
+import com.example.shared.feature.note.ui.models.NoteItemUiModel
 import com.example.shared.mapper.toDomain
 import com.example.shared.mapper.toUi
-import com.example.shared.models.NoteItemUiModel
 import kotlinx.coroutines.launch
 
-class NoteViewModel(
+class NoteViewModelImpl(
     private val getNoteByIdUseCase: GetNoteByIdUseCase,
     private val updateNoteUseCase: UpdateNoteUseCase,
     private val folderId: String,
     private val noteId: String,
-) : BaseViewModel<Event, UiState, Effect>() {
+) : BaseViewModel<Event, UiState, Effect>(), NoteViewModel {
 
     init {
         getNote()
@@ -50,7 +51,7 @@ class NoteViewModel(
         }
     }
 
-    private fun updateNote(note: NoteItemUiModel) {
+    override fun updateNote(note: NoteItemUiModel) {
         viewModelScope.launch {
 //            setState { copy(isLoading = true, isError = false) }
             updateNoteUseCase.invoke(note.toDomain())
@@ -60,7 +61,7 @@ class NoteViewModel(
         }
     }
 
-    private fun getNote() {
+    override fun getNote() {
         viewModelScope.launch {
             setState { copy(isLoading = true, isError = false) }
             getNoteByIdUseCase.invoke(noteId)

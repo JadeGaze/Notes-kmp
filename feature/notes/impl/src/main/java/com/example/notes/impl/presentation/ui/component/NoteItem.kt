@@ -21,7 +21,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import com.example.designsystem.R
-import com.example.shared.models.NoteItemUiModel
+import com.example.shared.feature.note.ui.models.NoteItemUiModel
 
 @Composable
 fun NoteItem(

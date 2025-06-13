@@ -2,7 +2,7 @@ package com.example.navigation.destination
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
-import com.example.feature.folders.impl.presentation.FoldersViewModel
+import com.example.feature.folders.impl.presentation.FoldersViewModelImpl
 import com.example.feature.folders.impl.presentation.model.FoldersContract.Effect
 import com.example.feature.folders.impl.presentation.ui.FoldersScreen
 import com.example.navigation.navigateToNote
@@ -11,7 +11,7 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun FoldersScreenDestination(navController: NavHostController, userId: String) {
-    val viewModel: FoldersViewModel = koinViewModel()
+    val viewModel: FoldersViewModelImpl = koinViewModel()
     FoldersScreen(
         state = viewModel.viewState.value,
         effectFlow = viewModel.effect,

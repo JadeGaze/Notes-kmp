@@ -2,7 +2,7 @@ package com.example.navigation.destination
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
-import com.example.auth.impl.presentation.SignUpViewModel
+import com.example.auth.impl.presentation.SignUpViewModelImpl
 import com.example.auth.impl.presentation.model.SignUpContract.Effect
 import com.example.auth.impl.presentation.ui.SignUpScreen
 import com.example.navigation.navigateToFolders
@@ -11,7 +11,7 @@ import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun SignUpScreenDestination(navController: NavHostController) {
-    val viewModel: SignUpViewModel = koinViewModel()
+    val viewModel: SignUpViewModelImpl = koinViewModel()
     SignUpScreen(
         state = viewModel.viewState.value,
         effectFlow = viewModel.effect,

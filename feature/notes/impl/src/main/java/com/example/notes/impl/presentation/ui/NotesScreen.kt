@@ -35,7 +35,7 @@ import com.example.notes.impl.presentation.model.NotesContract.Effect
 import com.example.notes.impl.presentation.model.NotesContract.Event
 import com.example.notes.impl.presentation.model.NotesContract.UiState
 import com.example.notes.impl.presentation.ui.component.NoteItem
-import com.example.shared.models.NoteItemUiModel
+import com.example.shared.feature.note.ui.models.NoteItemUiModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach

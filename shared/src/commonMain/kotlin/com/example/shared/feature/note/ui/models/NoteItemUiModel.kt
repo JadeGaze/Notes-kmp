@@ -1,4 +1,4 @@
-package com.example.shared.models
+package com.example.shared.feature.note.ui.models
 
 import com.example.shared.feature.folders.data.model.FolderModel
 

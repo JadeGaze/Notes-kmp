@@ -1,47 +1,43 @@
 package com.example.auth.impl.presentation
 
-import android.util.Log
 import androidx.lifecycle.viewModelScope
-import com.example.auth.api.usecase.validators.IsNotEmptyStringUseCase
-import com.example.auth.impl.presentation.model.SignInContract.Effect
-import com.example.auth.impl.presentation.model.SignInContract.Event
-import com.example.auth.impl.presentation.model.SignInContract.UiState
+import com.example.auth.api.usecase.SignUpUseCase
+import com.example.auth.api.usecase.validators.IsEmailValidUseCase
+import com.example.auth.impl.presentation.model.SignUpContract.Effect
+import com.example.auth.impl.presentation.model.SignUpContract.Event
+import com.example.auth.impl.presentation.model.SignUpContract.UiState
 import com.example.designsystem.BaseViewModel
-import com.example.shared.feature.auth.domain.usecase.IsAuthUseCase
-import com.example.shared.feature.auth.domain.usecase.SignInUseCase
+import com.example.shared.feature.auth.domain.usecase.validators.IsNameValidUseCase
+import com.example.shared.feature.auth.domain.usecase.validators.IsPasswordValidUseCase
+import com.example.shared.feature.auth.ui.SignUpViewModel
 import com.google.firebase.FirebaseNetworkException
 import com.google.firebase.auth.FirebaseAuthException
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class SignInViewModel(
-    private val signInUseCase: SignInUseCase,
-    private val isAuthUseCase: IsAuthUseCase,
-    private val isNotEmptyStringUseCase: IsNotEmptyStringUseCase,
-) : BaseViewModel<Event, UiState, Effect>() {
-
-    private val _userId = MutableStateFlow<String?>(null)
-    val userId: StateFlow<String?> = _userId
-
-    init {
-        isAuth()
-    }
-
+class SignUpViewModelImpl(
+    private val signUpUseCase: SignUpUseCase,
+    private val isEmailValidUseCase: IsEmailValidUseCase,
+    private val isNameValidUseCase: IsNameValidUseCase,
+    private val isPasswordValidUseCase: IsPasswordValidUseCase,
+) : BaseViewModel<Event, UiState, Effect>(), SignUpViewModel {
     override fun setInitialState(): UiState {
         return UiState(
-            errorMessage = "",
+            isWrongEmail = false,
+            isWrongName = false,
+            isWrongPassword = false,
             isLoading = false,
             isError = false,
-            isWrongEmail = false,
-            isWrongPassword = false
+            errorMessage = "",
         )
     }
 
     override fun handleEvents(event: Event) {
         when (event) {
-            is Event.OnSignInClicked -> signIn(event.email, event.password)
-            Event.OnSignUpClicked -> setEffect { Effect.Navigation.ToSignUp }
+            Event.OnSignInClicked -> setEffect { Effect.Navigation.ToSignIn }
+            is Event.OnSignUpClicked -> {
+                signUp(event.email, event.name, event.password)
+            }
+
             Event.MessageWasShowed -> setState {
                 copy(
                     isLoading = false,
@@ -52,19 +48,11 @@ class SignInViewModel(
         }
     }
 
-    private fun signIn(email: String, password: String) {
-        if (validate(email, password)) {
+    override fun signUp(email: String, name: String, password: String) {
+        if (validate(email, name, password)) {
             viewModelScope.launch {
-                setState {
-                    copy(
-                        errorMessage = "",
-                        isLoading = true,
-                        isError = false,
-                        isWrongEmail = false,
-                        isWrongPassword = false
-                    )
-                }
-                signInUseCase.invoke(email, password)
+                setState { copy(isLoading = true, isError = false) }
+                signUpUseCase.invoke(email, name, password)
                     .onSuccess { user ->
                         setEffect { Effect.Navigation.ToFolders(user.id) }
                     }
@@ -75,7 +63,7 @@ class SignInViewModel(
                                     copy(
                                         isLoading = false,
                                         isError = true,
-                                        errorMessage = "wrong credentials"
+                                        errorMessage = "email already exists"
                                     )
                                 }
                             }
@@ -105,33 +93,28 @@ class SignInViewModel(
         }
     }
 
-    private fun validate(email: String, password: String): Boolean {
+    override fun validate(email: String, name: String, password: String): Boolean {
         validateEmail(email)
+        validateName(name)
         validatePassword(password)
-        return !viewState.value.isWrongEmail && !viewState.value.isWrongPassword
+        return !viewState.value.isWrongEmail && !viewState.value.isWrongName && !viewState.value.isWrongPassword
     }
 
-    private fun validateEmail(email: String) {
+    override fun validateEmail(email: String) {
         setState { copy(isLoading = true, isError = false) }
-        val isValid = isNotEmptyStringUseCase.invoke(email)
+        val isValid = isEmailValidUseCase.invoke(email)
         setState { copy(isLoading = false, isWrongEmail = !isValid) }
     }
 
-    private fun validatePassword(password: String) {
+    override fun validateName(name: String) {
         setState { copy(isLoading = true, isError = false) }
-        val isValid = isNotEmptyStringUseCase.invoke(password)
-        setState { copy(isLoading = false, isWrongPassword = !isValid) }
+        val isValid = isNameValidUseCase.invoke(name)
+        setState { copy(isLoading = false, isWrongName = !isValid) }
     }
 
-    private fun isAuth() {
-        viewModelScope.launch {
-            isAuthUseCase.invoke()
-                .onSuccess { userId ->
-                    _userId.value = userId
-                }
-                .onFailure {
-                    Log.d("SIGN IN", "${it.message}")
-                }
-        }
+    override fun validatePassword(password: String) {
+        setState { copy(isLoading = true, isError = false) }
+        val isValid = isPasswordValidUseCase.invoke(password)
+        setState { copy(isLoading = false, isWrongPassword = !isValid) }
     }
 }

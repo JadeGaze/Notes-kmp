@@ -4,7 +4,7 @@ import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import com.example.navigation.navigateToNote
-import com.example.notes.impl.presentation.NotesViewModel
+import com.example.notes.impl.presentation.NotesViewModelImpl
 import com.example.notes.impl.presentation.model.NotesContract.Effect
 import com.example.notes.impl.presentation.ui.NotesScreen
 import org.koin.androidx.compose.koinViewModel
@@ -13,7 +13,7 @@ import org.koin.core.parameter.parametersOf
 
 @Composable
 fun NotesScreenDestination(navController: NavHostController, folderId: String) {
-    val viewModel: NotesViewModel = koinViewModel { parametersOf(folderId) }
+    val viewModel: NotesViewModelImpl = koinViewModel { parametersOf(folderId) }
     NotesScreen(
         state = viewModel.viewState.value,
         effectFlow = viewModel.effect,

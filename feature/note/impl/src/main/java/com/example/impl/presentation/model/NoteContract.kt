@@ -3,7 +3,7 @@ package com.example.impl.presentation.model
 import com.example.designsystem.ViewEvent
 import com.example.designsystem.ViewSideEffect
 import com.example.designsystem.ViewState
-import com.example.shared.models.NoteItemUiModel
+import com.example.shared.feature.note.ui.models.NoteItemUiModel
 
 class NoteContract {
 

@@ -2,8 +2,9 @@ package com.example.shared.mapper
 
 import com.example.shared.core.utils.resource.TimeUtil
 import com.example.shared.feature.folders.data.model.FolderModel
+import com.example.shared.feature.note.ui.models.NoteItemUiModel
 import com.example.shared.feature.notes.domain.model.NoteDomainModel
-import com.example.shared.models.NoteItemUiModel
+
 
 fun NoteDomainModel.toUi(): NoteItemUiModel =
     NoteItemUiModel(
