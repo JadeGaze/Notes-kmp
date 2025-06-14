@@ -17,7 +17,7 @@ import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.designsystem.R
-import com.example.designsystem.SectionData
+import com.example.shared.core.common.SectionData
 
 @Composable
 fun SectionHeader(sectionData: SectionData, isExpanded: Boolean, onHeaderClick: () -> Unit) {

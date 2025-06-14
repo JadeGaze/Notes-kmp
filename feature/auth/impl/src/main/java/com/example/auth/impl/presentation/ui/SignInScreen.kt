@@ -21,11 +21,11 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.example.auth.impl.presentation.model.SignInContract.Effect
-import com.example.auth.impl.presentation.model.SignInContract.Event
-import com.example.auth.impl.presentation.model.SignInContract.UiState
 import com.example.designsystem.SIDE_EFFECTS_KEY
 import com.example.designsystem.component.ErrorIconShow
+import com.example.shared.feature.auth.ui.model.SignInContract.UiState
+import com.example.shared.feature.auth.ui.model.SignInContract.Effect
+import com.example.shared.feature.auth.ui.model.SignInContract.Event
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach

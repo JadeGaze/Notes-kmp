@@ -1,9 +1,9 @@
-package com.example.feature.folders.impl.presentation.model
+package com.example.shared.feature.folders.ui.model
 
-import com.example.designsystem.SectionData
-import com.example.designsystem.ViewEvent
-import com.example.designsystem.ViewSideEffect
-import com.example.designsystem.ViewState
+import com.example.shared.core.common.SectionData
+import com.example.shared.core.presentation.ViewEvent
+import com.example.shared.core.presentation.ViewSideEffect
+import com.example.shared.core.presentation.ViewState
 
 class FoldersContract {
 

@@ -31,11 +31,11 @@ import com.example.designsystem.R
 import com.example.designsystem.SIDE_EFFECTS_KEY
 import com.example.designsystem.component.NetworkError
 import com.example.designsystem.component.Progress
-import com.example.notes.impl.presentation.model.NotesContract.Effect
-import com.example.notes.impl.presentation.model.NotesContract.Event
-import com.example.notes.impl.presentation.model.NotesContract.UiState
 import com.example.notes.impl.presentation.ui.component.NoteItem
 import com.example.shared.feature.note.ui.models.NoteItemUiModel
+import com.example.shared.feature.notes.ui.model.NotesContract.UiState
+import com.example.shared.feature.notes.ui.model.NotesContract.Event
+import com.example.shared.feature.notes.ui.model.NotesContract.Effect
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
@@ -50,7 +50,7 @@ fun NotesScreen(
     navHostController: NavHostController,
 ) {
     val title =
-        remember { mutableStateOf(if (state.notesList.isNullOrEmpty()) "" else state.notesList[0].title) }
+        remember { mutableStateOf(if (state.notesList.isNullOrEmpty()) "" else state.notesList!![0].title) } // почему-то начало ругаться после переноса view model в общую часть
     Scaffold(
         modifier = Modifier.padding(horizontal = 16.dp),
 
@@ -117,7 +117,7 @@ fun NotesScreen(
 
             else -> {
                 title.value =
-                    if (state.notesList.isNullOrEmpty()) "" else state.notesList[0].folder.name
+                    if (state.notesList.isNullOrEmpty()) "" else state.notesList!![0].folder.name // почему-то начало ругаться после переноса view model в общую часть
                 Log.d(NOTES_SCREEN_TAG, "IS SHOWING ${title.value}")
                 NotesContent(paddingValues, state.notesList.orEmpty()) { noteId, folderId ->
                     onEventSent(Event.OnNoteClicked(noteId = noteId, folderId = folderId))

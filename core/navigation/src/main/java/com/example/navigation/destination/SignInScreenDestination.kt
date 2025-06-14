@@ -1,19 +1,20 @@
 package com.example.navigation.destination
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.navigation.NavHostController
-import com.example.auth.impl.presentation.SignInViewModelImpl
-import com.example.auth.impl.presentation.model.SignInContract.Effect
 import com.example.auth.impl.presentation.ui.SignInScreen
 import com.example.navigation.navigateToFolders
 import com.example.navigation.navigateToSignUp
+import com.example.shared.feature.auth.ui.SignInViewModel
+import com.example.shared.feature.auth.ui.model.SignInContract.Effect
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
 fun SignInScreenDestination(navController: NavHostController) {
-    val viewModel: SignInViewModelImpl = koinViewModel()
+    val viewModel: SignInViewModel = koinViewModel()
     SignInScreen(
-        state = viewModel.viewState.value,
+        state = viewModel.viewState.collectAsState().value,
         effectFlow = viewModel.effect,
         onEventSent = { event -> viewModel.setEvent(event) },
         onNavigationRequested = { effect ->

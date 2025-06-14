@@ -1,4 +1,4 @@
-package com.example.shared.mapper
+package com.example.shared.core.utils.mapper
 
 import com.example.shared.core.utils.resource.TimeUtil
 import com.example.shared.feature.folders.data.model.FolderModel

@@ -1,10 +1,9 @@
-package com.example.feature.folders.impl.mapper
+package com.example.shared.core.utils.mapper
 
-import com.example.designsystem.R.drawable
-import com.example.designsystem.SectionData
-import com.example.feature.folders.impl.presentation.model.FolderUiModel
+import com.example.shared.core.common.SectionData
 import com.example.shared.feature.folders.data.model.FolderModel
 import com.example.shared.feature.folders.data.model.FoldersListModel
+import com.example.shared.feature.folders.ui.model.FolderUiModel
 
 fun List<FoldersListModel>.toUi(): List<SectionData> = map { it.toUi() }
 
@@ -17,7 +16,6 @@ private fun FoldersListModel.toUi(): SectionData {
 fun FolderModel.toUi() =
     FolderUiModel(
         id = id,
-        iconId = drawable.outline_folder_24,
         name = name,
         notesNumber = notes
     )

@@ -1,8 +1,8 @@
-package com.example.auth.impl.presentation.model
+package com.example.shared.feature.auth.ui.model
 
-import com.example.designsystem.ViewEvent
-import com.example.designsystem.ViewSideEffect
-import com.example.designsystem.ViewState
+import com.example.shared.core.presentation.ViewEvent
+import com.example.shared.core.presentation.ViewSideEffect
+import com.example.shared.core.presentation.ViewState
 
 class SignInContract {
 

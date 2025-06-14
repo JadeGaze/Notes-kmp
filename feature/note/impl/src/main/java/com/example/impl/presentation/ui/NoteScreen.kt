@@ -29,9 +29,9 @@ import androidx.compose.ui.unit.sp
 import com.example.designsystem.SIDE_EFFECTS_KEY
 import com.example.designsystem.component.NetworkError
 import com.example.designsystem.component.Progress
-import com.example.impl.presentation.model.NoteContract.Effect
-import com.example.impl.presentation.model.NoteContract.Event
-import com.example.impl.presentation.model.NoteContract.UiState
+import com.example.shared.feature.note.ui.models.NoteContract.UiState
+import com.example.shared.feature.note.ui.models.NoteContract.Effect
+import com.example.shared.feature.note.ui.models.NoteContract.Event
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow

@@ -1,4 +1,4 @@
-package com.example.designsystem
+package com.example.shared.core.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -23,7 +23,7 @@ abstract class BaseViewModel<Event : ViewEvent, UiState : ViewState, Effect : Vi
 
     private val initialState: UiState by lazy { setInitialState() }
 
-    private val _viewState = MutableStateFlow<UiState>(initialState)
+    private val _viewState = MutableStateFlow(initialState)
     val viewState: StateFlow<UiState> = _viewState
 
     private val _event: MutableSharedFlow<Event> = MutableSharedFlow()

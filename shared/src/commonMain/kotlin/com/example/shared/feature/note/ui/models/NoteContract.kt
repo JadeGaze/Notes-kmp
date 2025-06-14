@@ -1,9 +1,8 @@
-package com.example.impl.presentation.model
+package com.example.shared.feature.note.ui.models
 
-import com.example.designsystem.ViewEvent
-import com.example.designsystem.ViewSideEffect
-import com.example.designsystem.ViewState
-import com.example.shared.feature.note.ui.models.NoteItemUiModel
+import com.example.shared.core.presentation.ViewEvent
+import com.example.shared.core.presentation.ViewSideEffect
+import com.example.shared.core.presentation.ViewState
 
 class NoteContract {
 
