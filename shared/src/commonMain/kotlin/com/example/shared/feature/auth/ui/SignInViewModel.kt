@@ -25,6 +25,7 @@ class SignInViewModel(
 
     init {
         isAuth()
+
     }
 
     override fun setInitialState(): UiState {
@@ -122,7 +123,7 @@ class SignInViewModel(
         setState { copy(isLoading = false, isWrongPassword = !isValid) }
     }
 
-    private fun isAuth() {
+    fun isAuth() {
         viewModelScope.launch {
             isAuthUseCase.invoke()
                 .onSuccess { userId ->

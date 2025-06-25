@@ -9,14 +9,14 @@ import com.example.shared.core.database.entity.UserEntity
 @Dao
 interface UserDao {
     @Insert
-    fun createUser(user: UserEntity)
+    suspend fun createUser(user: UserEntity)
 
     @Query("SELECT * FROM users LIMIT 1")
-    fun getCurrentUser(): UserEntity?
+    suspend fun getCurrentUser(): UserEntity?
 
     @Update
-    fun updateCurrentUser(user: UserEntity)
+    suspend fun updateCurrentUser(user: UserEntity)
 
     @Query("DELETE FROM users")
-    fun deleteUser()
+    suspend fun deleteUser()
 }

@@ -13,15 +13,15 @@ interface NotesDao {
 
     @Transaction
     @Query("SELECT * FROM notes WHERE folder_id = :folderId")
-    fun getNotesByFolderId(folderId: Long): List<NoteWithFolderEntity>
+    suspend fun getNotesByFolderId(folderId: Long): List<NoteWithFolderEntity>
 
     @Transaction
     @Query("SELECT * FROM notes WHERE id = :noteId")
-    fun getNoteById(noteId: Long): NoteWithFolderEntity
+    suspend fun getNoteById(noteId: Long): NoteWithFolderEntity
 
     @Insert
-    fun createNote(note: NoteEntity): Long
+    suspend fun createNote(note: NoteEntity): Long
 
     @Update
-    fun updateNote(note: NoteEntity)
+    suspend fun updateNote(note: NoteEntity)
 }

@@ -5,13 +5,13 @@ firebaseAuth = "2.1.0"
 firebaseBom = "33.8.0"
 firebaseFirestore = "2.1.0"
 koin = "3.4.0"
-kotlin = "2.0.0"
+kotlin = "2.1.0-Beta1"
 kotlinxDatetime = "0.6.2"
 kotlinxSerializationJson = "1.6.0"
 coreKtx = "1.10.1"
 junit = "4.13.2"
 junitVersion = "1.1.5"
-kotlinxCoroutinesTest = "1.6.0"
+kotlinxCoroutinesTest = "1.8.1"
 mockk = "1.12.0"
 espressoCore = "3.5.1"
 lifecycleRuntimeKtx = "2.6.1"
@@ -104,6 +104,7 @@ kotlinSerialization = { id = "org.jetbrains.kotlin.plugin.serialization", versio
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 androidKotlinMultiplatformLibrary = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
 googleServices = { id = "com.google.gms.google-services", version.ref = "googleServices" }
+kotlinCocoapods = { id = "org.jetbrains.kotlin.native.cocoapods", version.ref = "kotlin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 
 [bundles]

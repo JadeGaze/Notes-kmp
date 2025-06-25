@@ -1,0 +1,12 @@
+target 'iosApp' do
+  use_frameworks!(:linkage => :static)
+  platform :ios, '18.5'
+  pod 'shared', :path => '/Users/aliyagabdullina/AndroidStudioProjects/Notes-kmp/shared'
+  pod 'FirebaseFirestore'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Database'
+  pod 'Firebase/Core'
+  pod 'Firebase/Storage'
+  pod 'Firebase/Messaging'
+  pod 'Firebase/RemoteConfig'
+end
