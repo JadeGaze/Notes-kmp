@@ -18,7 +18,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.example.designsystem.SIDE_EFFECTS_KEY
-import com.example.designsystem.component.ErrorIconShow
 import com.example.designsystem.component.FormButton
 import com.example.designsystem.component.FormField
 import com.example.designsystem.theme.Typography

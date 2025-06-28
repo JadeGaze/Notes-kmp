@@ -18,13 +18,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import com.example.designsystem.SIDE_EFFECTS_KEY
-import com.example.designsystem.component.ErrorIconShow
-import com.example.shared.feature.auth.ui.model.SignInContract.UiState
-import com.example.shared.feature.auth.ui.model.SignInContract.Effect
-import com.example.shared.feature.auth.ui.model.SignInContract.Event
 import com.example.designsystem.component.FormButton
 import com.example.designsystem.component.FormField
 import com.example.designsystem.theme.Typography
+import com.example.shared.feature.auth.ui.model.SignInContract.Effect
+import com.example.shared.feature.auth.ui.model.SignInContract.Event
+import com.example.shared.feature.auth.ui.model.SignInContract.UiState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
