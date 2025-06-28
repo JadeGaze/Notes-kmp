@@ -116,15 +116,25 @@ fun logScreenView(route: String) {
     val firebaseAnalytics = Firebase.analytics
 
     val screenName = when (route) {
-        SIGN_IN -> { SIGN_IN }
+        SIGN_IN -> {
+            SIGN_IN
+        }
 
-        SIGN_UP -> { SIGN_UP }
+        SIGN_UP -> {
+            SIGN_UP
+        }
 
-        FOLDERS_PATH -> { FOLDERS }
+        FOLDERS_PATH -> {
+            FOLDERS
+        }
 
-        NOTE_PATH -> { NOTE }
+        NOTE_PATH -> {
+            NOTE
+        }
 
-        NOTES_PATH -> { NOTES }
+        NOTES_PATH -> {
+            NOTES
+        }
 
         else -> {
             "unknown_screen"

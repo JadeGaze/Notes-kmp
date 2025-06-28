@@ -1,7 +1,6 @@
-package com.example.designsystem
+package com.example.designsystem.model
 
 import com.example.shared.core.common.SectionItem
-
 
 data class SectionData(val header: String, val items: MutableList<SectionItem>) {
     companion object {

@@ -3,7 +3,6 @@
 package com.example.feature.folders.impl.presentation.ui
 
 import android.util.Log
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -13,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -29,8 +29,8 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.designsystem.R
 import com.example.designsystem.SIDE_EFFECTS_KEY
-import com.example.designsystem.component.NetworkError
-import com.example.designsystem.component.Progress
+import com.example.designsystem.component.status.NetworkError
+import com.example.designsystem.component.status.Progress
 import com.example.feature.folders.impl.presentation.model.FoldersContract.Effect
 import com.example.feature.folders.impl.presentation.model.FoldersContract.Event
 import com.example.feature.folders.impl.presentation.model.FoldersContract.UiState
@@ -49,7 +49,6 @@ fun FoldersScreen(
 ) {
 
     Scaffold(
-        modifier = Modifier.padding(horizontal = 16.dp),
         topBar = {
             CenterAlignedTopAppBar(title = { Text(text = stringResource(R.string.folders)) })
         },
@@ -64,10 +63,12 @@ fun FoldersScreen(
                     }
                 }
                 Row(
-                    modifier = Modifier.fillMaxWidth(),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 16.dp),
                     horizontalArrangement = Arrangement.End
                 ) {
-                    Image(
+                    Icon(
                         modifier = Modifier.clickable {
                             Log.d(FOLDER_SCREEN_TAG, "add folder clicked")
                             showBottomSheet = true

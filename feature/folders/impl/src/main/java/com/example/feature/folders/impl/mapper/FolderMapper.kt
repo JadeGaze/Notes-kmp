@@ -1,7 +1,7 @@
 package com.example.feature.folders.impl.mapper
 
 import com.example.designsystem.R.drawable
-import com.example.designsystem.SectionData
+import com.example.designsystem.model.SectionData
 import com.example.feature.folders.impl.presentation.model.FolderUiModel
 import com.example.shared.feature.folders.data.model.FolderModel
 import com.example.shared.feature.folders.data.model.FoldersListModel

@@ -1,4 +1,4 @@
-package com.example.designsystem.component
+package com.example.designsystem.component.status
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -25,13 +25,13 @@ fun NetworkError(
     ) {
         Text(
             text = "Error",
-            style = MaterialTheme.typography.headlineMedium,
+            style = MaterialTheme.typography.headlineMedium.copy(color = MaterialTheme.colorScheme.primary),
             textAlign = TextAlign.Center,
         )
 
         Text(
             text = "Error Description",
-            style = MaterialTheme.typography.bodyMedium,
+            style = MaterialTheme.typography.bodyMedium.copy(color = MaterialTheme.colorScheme.primary),
             modifier = Modifier.padding(8.dp),
             textAlign = TextAlign.Center,
         )

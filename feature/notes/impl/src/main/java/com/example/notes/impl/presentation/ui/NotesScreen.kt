@@ -1,7 +1,6 @@
 package com.example.notes.impl.presentation.ui
 
 import android.util.Log
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -10,9 +9,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.BottomAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
@@ -29,8 +28,10 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.example.designsystem.R
 import com.example.designsystem.SIDE_EFFECTS_KEY
-import com.example.designsystem.component.NetworkError
-import com.example.designsystem.component.Progress
+import com.example.designsystem.component.status.NetworkError
+import com.example.designsystem.component.status.Progress
+import com.example.designsystem.theme.ExtraShapes.FirstItemShape
+import com.example.designsystem.theme.ExtraShapes.LastItemShape
 import com.example.notes.impl.presentation.model.NotesContract.Effect
 import com.example.notes.impl.presentation.model.NotesContract.Event
 import com.example.notes.impl.presentation.model.NotesContract.UiState
@@ -52,8 +53,6 @@ fun NotesScreen(
     val title =
         remember { mutableStateOf(if (state.notesList.isNullOrEmpty()) "" else state.notesList[0].title) }
     Scaffold(
-        modifier = Modifier.padding(horizontal = 16.dp),
-
         topBar = {
             Log.d("NOTES SCREEN", "title = ${title.value}")
             TopAppBar(title = { Text(title.value) })
@@ -69,7 +68,7 @@ fun NotesScreen(
                     val titleNewNote = stringResource(
                         id = R.string.new_note
                     )
-                    Image(
+                    Icon(
                         modifier = Modifier.clickable {
                             Log.d(NOTES_SCREEN_TAG, "add note clicked")
                             onEventSent(
@@ -135,15 +134,17 @@ fun NotesContent(
     notes: List<NoteItemUiModel>,
     onItemClick: (String, String) -> Unit,
 ) {
-    LazyColumn(modifier = Modifier.padding(paddingValues)) {
+    LazyColumn(modifier = Modifier
+        .padding(paddingValues)
+        .padding(horizontal = 16.dp)) {
         itemsIndexed(items = notes, key = { _, note -> note.id }) { index, note ->
             val modifier = when (index) {
                 0 -> {
-                    Modifier.clip(RoundedCornerShape(24.dp, 24.dp, 0.dp, 0.dp))
+                    Modifier.clip(FirstItemShape)
                 }
 
                 notes.lastIndex -> {
-                    Modifier.clip(RoundedCornerShape(0.dp, 0.dp, 24.dp, 24.dp))
+                    Modifier.clip(LastItemShape)
                 }
 
                 else -> {
