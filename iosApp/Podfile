@@ -1,0 +1,17 @@
+target 'iosApp' do
+  use_frameworks!
+  platform :ios, '18.5'
+  pod 'shared', :path => '/Users/aliyagabdullina/AndroidStudioProjects/Notes-kmp/shared'
+  pod 'FirebaseFirestore'
+  pod 'Firebase/Auth'
+  pod 'Firebase/Database'
+  pod 'Firebase/Core'
+  pod 'Firebase/Storage'
+  pod 'Firebase/Messaging'
+  pod 'Firebase/RemoteConfig'
+  pod 'KMPObservableViewModelSwiftUI', '1.0.0-BETA-8'
+  pod 'KMPNativeCoroutinesAsync', '1.0.0-ALPHA-38'
+  pod 'KMPNativeCoroutinesCombine', '1.0.0-ALPHA-38'
+  pod 'KMPNativeCoroutinesRxSwift', git: 'https://github.com/rickclephas/KMP-NativeCoroutines.git', tag: 'v1.0.0-ALPHA-38'
+
+end

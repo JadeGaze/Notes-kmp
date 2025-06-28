@@ -1,5 +1,6 @@
 package com.example.shared.feature.notes
 
+import com.example.shared.core.di.viewModel
 import com.example.shared.feature.notes.data.datasource.FirebaseNotesDataSource
 import com.example.shared.feature.notes.data.datasource.RoomNotesDataSource
 import com.example.shared.feature.notes.data.repository.NotesRepositoryImpl
@@ -10,6 +11,7 @@ import com.example.shared.feature.notes.domain.datasource.RemoteNotesDataSource
 import com.example.shared.feature.notes.domain.repository.NotesRepository
 import com.example.shared.feature.notes.domain.usecase.CreateNoteUseCase
 import com.example.shared.feature.notes.domain.usecase.GetNotesByFolderIdUseCase
+import com.example.shared.feature.notes.ui.NotesViewModel
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
@@ -24,4 +26,6 @@ val notesModule = module {
 
     factory<GetNotesByFolderIdUseCase> { GetNotesByFolderIdUseCaseImpl(get(), get()) }
     factory<CreateNoteUseCase> { CreateNoteUseCaseImpl(get(), get()) }
+
+    viewModel { (folderId: String) -> NotesViewModel(get(), get(), folderId) }
 }

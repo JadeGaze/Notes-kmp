@@ -4,8 +4,10 @@ plugins {
     alias(libs.plugins.googleServices)
     alias(libs.plugins.room)
     alias(libs.plugins.kotlinSerialization)
+    alias(libs.plugins.kotlinCocoapods)
 //    alias(libs.plugins.compose.compiler)
     id("com.google.devtools.ksp")
+    alias(libs.plugins.rickclephas)
 }
 
 kotlin {
@@ -65,11 +67,15 @@ kotlin {
 // common to share sources between related targets.
 // See: https://kotlinlang.org/docs/multiplatform-hierarchy.html
     sourceSets {
+        all {
+            languageSettings.optIn("kotlinx.cinterop.ExperimentalForeignApi")
+            languageSettings.optIn("kotlin.experimental.ExperimentalObjCName")
+        }
         commonMain {
             dependencies {
                 implementation(libs.kotlin.stdlib)
                 // Add KMP dependencies here
-                implementation(libs.kotlinx.coroutines.core)
+                api(libs.kotlinx.coroutines.core)
                 implementation(libs.koin.core)
                 implementation(project.dependencies.platform(libs.firebase.bom))
                 implementation(libs.gitlive.firebase.auth)
@@ -77,6 +83,10 @@ kotlin {
                 implementation(libs.androidx.room.runtime)
                 implementation(libs.kotlinx.serialization.json)
                 implementation(libs.kotlinx.datetime)
+                implementation(libs.bundles.koin.kmp)
+
+                implementation(libs.androidx.lifecycle.viewmodel)
+                api(libs.rickclephas.kmp)
             }
         }
 
@@ -108,6 +118,7 @@ kotlin {
 
             iosMain {
                 dependencies {
+                    api(libs.kotlinx.coroutines.core)
                     // Add iOS-specific dependencies here. This a source set created by Kotlin Gradle
                     // Plugin (KGP) that each specific iOS target (e.g., iosX64) depends on as
                     // part of KMP’s default source set hierarchy. Note that this source set depends
@@ -115,6 +126,20 @@ kotlin {
                     // KMP dependencies declared in commonMain.
                 }
             }
+        }
+
+    }
+    cocoapods {
+        summary = "Some description for the Shared Module"
+        homepage = "Link to the Shared Module homepage"
+        version = "1.0"
+        ios.deploymentTarget = "18.5"
+        podfile = project.file("../iosApp/Podfile")
+        framework {
+            baseName = "CommonKmp"
+            export(libs.kotlinx.coroutines.core)
+            isStatic = true
+            export(libs.rickclephas.kmp)
         }
 
     }

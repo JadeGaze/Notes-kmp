@@ -17,13 +17,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import com.example.auth.impl.presentation.model.SignUpContract.Effect
-import com.example.auth.impl.presentation.model.SignUpContract.Event
-import com.example.auth.impl.presentation.model.SignUpContract.UiState
 import com.example.designsystem.SIDE_EFFECTS_KEY
 import com.example.designsystem.component.FormButton
 import com.example.designsystem.component.FormField
 import com.example.designsystem.theme.Typography
+import com.example.shared.feature.auth.ui.model.SignUpContract.Effect
+import com.example.shared.feature.auth.ui.model.SignUpContract.Event
+import com.example.shared.feature.auth.ui.model.SignUpContract.UiState
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach

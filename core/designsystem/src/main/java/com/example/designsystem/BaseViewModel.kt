@@ -1,12 +1,11 @@
 package com.example.designsystem
 
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.State
-import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
@@ -24,8 +23,8 @@ abstract class BaseViewModel<Event : ViewEvent, UiState : ViewState, Effect : Vi
 
     private val initialState: UiState by lazy { setInitialState() }
 
-    private val _viewState: MutableState<UiState> = mutableStateOf(initialState)
-    val viewState: State<UiState> = _viewState
+    private val _viewState = MutableStateFlow<UiState>(initialState)
+    val viewState: StateFlow<UiState> = _viewState
 
     private val _event: MutableSharedFlow<Event> = MutableSharedFlow()
 

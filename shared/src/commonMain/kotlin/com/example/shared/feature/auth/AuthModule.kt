@@ -3,6 +3,7 @@ package com.example.shared.feature.auth
 import com.example.auth.api.usecase.SignUpUseCase
 import com.example.auth.api.usecase.validators.IsEmailValidUseCase
 import com.example.auth.api.usecase.validators.IsNotEmptyStringUseCase
+import com.example.shared.core.di.viewModel
 import com.example.shared.feature.auth.data.datasources.local.LocalDataSource
 import com.example.shared.feature.auth.data.datasources.local.RoomDataSource
 import com.example.shared.feature.auth.data.datasources.remote.FirebaseDataSource
@@ -22,6 +23,8 @@ import com.example.shared.feature.auth.domain.usecase.SignInUseCase
 import com.example.shared.feature.auth.domain.usecase.SignOutUseCase
 import com.example.shared.feature.auth.domain.usecase.validators.IsNameValidUseCase
 import com.example.shared.feature.auth.domain.usecase.validators.IsPasswordValidUseCase
+import com.example.shared.feature.auth.ui.SignInViewModel
+import com.example.shared.feature.auth.ui.SignUpViewModel
 import dev.gitlive.firebase.Firebase
 import dev.gitlive.firebase.auth.FirebaseAuth
 import dev.gitlive.firebase.auth.auth
@@ -56,4 +59,8 @@ val authModule = module {
     factory<IsNameValidUseCase> { IsNameValidUseCaseImpl() }
     factory<IsPasswordValidUseCase> { IsPasswordValidUseCaseImpl() }
     factory<IsNotEmptyStringUseCase> { IsNotEmptyStringUseCaseImpl() }
+
+    viewModel { SignInViewModel(get(), get(), get()) }
+    viewModel { SignUpViewModel(get(), get(), get(), get()) }
+
 }

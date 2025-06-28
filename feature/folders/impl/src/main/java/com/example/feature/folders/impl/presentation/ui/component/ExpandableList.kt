@@ -20,11 +20,11 @@ import androidx.compose.runtime.toMutableStateMap
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
-import com.example.designsystem.model.SectionData
 import com.example.designsystem.theme.ExtraShapes.FirstItemShape
 import com.example.designsystem.theme.ExtraShapes.LastItemShape
-import com.example.feature.folders.impl.presentation.model.FolderUiModel
+import com.example.shared.core.common.SectionData
 import com.example.shared.core.common.SectionItem
+import com.example.shared.feature.folders.ui.model.FolderUiModel
 
 @Composable
 fun ExpandableList(

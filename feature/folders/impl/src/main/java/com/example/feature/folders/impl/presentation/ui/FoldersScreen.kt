@@ -31,10 +31,10 @@ import com.example.designsystem.R
 import com.example.designsystem.SIDE_EFFECTS_KEY
 import com.example.designsystem.component.status.NetworkError
 import com.example.designsystem.component.status.Progress
-import com.example.feature.folders.impl.presentation.model.FoldersContract.Effect
-import com.example.feature.folders.impl.presentation.model.FoldersContract.Event
-import com.example.feature.folders.impl.presentation.model.FoldersContract.UiState
 import com.example.feature.folders.impl.presentation.ui.component.ExpandableList
+import com.example.shared.feature.folders.ui.model.FoldersContract.UiState
+import com.example.shared.feature.folders.ui.model.FoldersContract.Event
+import com.example.shared.feature.folders.ui.model.FoldersContract.Effect
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach

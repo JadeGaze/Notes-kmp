@@ -20,7 +20,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.designsystem.R
-import com.example.feature.folders.impl.presentation.model.FolderUiModel
+import com.example.shared.feature.folders.ui.model.FolderUiModel
 
 @Composable
 fun FolderItem(modifier: Modifier = Modifier, data: FolderUiModel, isDivider: Boolean = false) {
@@ -36,7 +36,7 @@ fun FolderItem(modifier: Modifier = Modifier, data: FolderUiModel, isDivider: Bo
         ) {
             Icon(
                 modifier = Modifier.padding(8.dp),
-                painter = painterResource(id = data.iconId),
+                painter = painterResource(id = data.iconId?: R.drawable.outline_folder_24),
                 contentDescription = ""
             )
             Text(

@@ -12,7 +12,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.auth.impl.presentation.SignInViewModel
 import com.example.navigation.Navigation.Args.FOLDERS
 import com.example.navigation.Navigation.Args.FOLDER_ID
 import com.example.navigation.Navigation.Args.NOTE
@@ -29,6 +28,7 @@ import com.example.navigation.destination.NoteScreenDestination
 import com.example.navigation.destination.NotesScreenDestination
 import com.example.navigation.destination.SignInScreenDestination
 import com.example.navigation.destination.SignUpScreenDestination
+import com.example.shared.feature.auth.ui.SignInViewModel
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.ktx.Firebase
