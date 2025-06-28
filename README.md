@@ -1,39 +1,30 @@
-## 🔍 Summary
+## Summary
 
 It is an Android note-taking app designed for reliability and productivity, featuring:
 
-- 📂Organized Workflow: Create and manage notes within customizable folders
-- 🌐Offline-First Design: Full functionality without internet (Room DB persistence)
-- 🔄Sync: Automatic Firestore synchronization
-- ⚡Auto-Save Protection: Never lose work with periodic draft preservation
+- Organized Workflow: Create and manage notes within customizable folders
+- Offline-First Design: Full functionality without internet (Room DB persistence)
+- Sync: Automatic Firestore synchronization
+- Auto-Save Protection: Never lose work with periodic draft preservation
 
-## 🛠 Tech Stack
+## Screencasts
 
-#### Core:
+1. Android
 
-- Kotlin (1.9.0) + Coroutines
-- Jetpack Compose (2025.01.00) + Material 3
-- Koin (3.4.0)
-- Navigation Component (2.8.5)
 
-#### Data:
+https://github.com/user-attachments/assets/fcc20b0b-6fae-4c49-b39f-c032c1e1c0ba
 
-- Room DB (2.6.1)
-- Firebase Firestore (25.1.1) (for cloud sync)
-- Kotlinx Serialization (1.6.0) (JSON parsing)
 
-#### Architecture:
+2. Desktop
 
-- Modularization (`:shared:commonAndroid`, `:shared:commonMain`; android: `:app`,
-  `:core:designsystem`, `:core:navigation`, `:feature:notes:impl`, `:feature:note:impl`,
-  `:feature:folders:api`, `:feature:folders:impl`, `:feature:auth:impl`;)
-- MVI
-- DI (Koin)
 
-#### Unit Testing:
+https://github.com/user-attachments/assets/3f859ea5-e92e-4fb3-b05c-0648a3f65999
 
-- JUnit (4.13.2)
-- MockK (1.12.0)
+
+3. iOS
+(there's no video..)
+
+## Information
 
 #### List of unit tests:
 
@@ -46,12 +37,9 @@ It is an Android note-taking app designed for reliability and productivity, feat
 7. UpdateNoteUseCaseTest
 8. GetNotesByFolderIdUseCaseTest
 
-#### Infrastructure:
+#### Firebase Platform:
 
-- Firebase Platform:
-    - Auth (via Email)
-    - Crashlytics
-
-#### DevOps & Code Quality:
-
-- Performance: Firebase Performance Monitoring
+- Auth (via Email)
+- Crashlytics
+- Analytics
+- Firebase Performance Monitoring
