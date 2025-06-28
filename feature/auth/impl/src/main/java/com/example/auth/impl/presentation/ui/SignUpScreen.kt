@@ -7,8 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -17,15 +16,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.auth.impl.presentation.model.SignUpContract.Effect
 import com.example.auth.impl.presentation.model.SignUpContract.Event
 import com.example.auth.impl.presentation.model.SignUpContract.UiState
 import com.example.designsystem.SIDE_EFFECTS_KEY
-import com.example.designsystem.component.ErrorIconShow
+import com.example.designsystem.component.FormButton
+import com.example.designsystem.component.FormField
+import com.example.designsystem.theme.Typography
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
@@ -71,72 +69,40 @@ fun SignUpScreen(
     ) {
         Text(
             text = "Sign up",
-            style = TextStyle(fontSize = 20.sp, fontWeight = FontWeight.Bold),
+            style = Typography.titleSmall.copy(color = MaterialTheme.colorScheme.primary),
             modifier = Modifier.padding(vertical = 16.dp)
         )
-        OutlinedTextField(
+        FormField(
             value = name.value,
             modifier = Modifier.padding(top = 16.dp),
-            placeholder = {
-                Text(text = "your name")
-            },
-            singleLine = true,
-            onValueChange = { newString ->
-                name.value = newString
-            },
-            isError = isErrorEmail.value,
-            supportingText = {
-                if (isErrorName.value) {
-                    Text(text = "Error")
-                }
-            },
-            trailingIcon = {
-                ErrorIconShow(isErrorName.value)
-            }
+            placeholder = "your name",
+            onValueChange = { newString -> name.value = newString },
+            isError = isErrorName.value,
+            supportingText = "Error",
         )
-        OutlinedTextField(
+
+        FormField(
             value = email.value,
             modifier = Modifier.padding(),
-            placeholder = {
-                Text(text = "example@mail.com")
-            },
-            singleLine = true,
-            onValueChange = { newString ->
-                email.value = newString
-            },
+            placeholder = "example@mail.com",
+            onValueChange = { newString -> email.value = newString },
             isError = isErrorEmail.value,
-            supportingText = {
-                if (isErrorEmail.value) {
-                    Text(text = "Error")
-                }
-            },
-            trailingIcon = {
-                ErrorIconShow(isErrorEmail.value)
-            }
+            supportingText = "Error",
         )
-        OutlinedTextField(
+        FormField(
             value = password.value,
-            placeholder = {
-                Text(text = "password")
-            },
-            singleLine = true,
-            onValueChange = { newString ->
-                password.value = newString
-            },
+            placeholder = "password",
+            onValueChange = { newString -> password.value = newString },
             isError = isErrorPassword.value,
-            supportingText = {
-                if (isErrorPassword.value) {
-                    Text(text = "Error")
-                }
-            },
-            trailingIcon = {
-                ErrorIconShow(isErrorPassword.value)
-            }
+            supportingText = "Error",
         )
-        OutlinedButton(
+
+        FormButton(
             modifier = Modifier
                 .padding(top = 16.dp)
-                .fillMaxWidth(), onClick = {
+                .fillMaxWidth(),
+            buttonText = "sign up",
+            onClick = {
                 onEventSent(
                     Event.OnSignUpClicked(
                         email = email.value,
@@ -144,15 +110,14 @@ fun SignUpScreen(
                         name = name.value,
                     )
                 )
-            }) {
-            Text(text = "sign up", fontSize = 16.sp)
-        }
+            })
+
         Text(
             text = "Do have an account? Sign in!",
             modifier = Modifier
                 .padding(top = 8.dp)
                 .clickable { onEventSent(Event.OnSignInClicked) },
-            fontSize = 16.sp
+            style = Typography.bodySmall.copy(color = MaterialTheme.colorScheme.primary)
         )
     }
 

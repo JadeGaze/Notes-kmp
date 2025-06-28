@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.jetbrainsKotlinAndroid)
     alias(libs.plugins.compose.compiler)
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -51,6 +52,11 @@ dependencies {
     implementation(project(":feature:folders:impl"))
     implementation(project(":feature:notes:impl"))
     implementation(project(":feature:note:impl"))
+
+    implementation(libs.firebase.crashlytics)
+    implementation(libs.firebase.analytics.ktx)
+    implementation(libs.firebase.perf)
+
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

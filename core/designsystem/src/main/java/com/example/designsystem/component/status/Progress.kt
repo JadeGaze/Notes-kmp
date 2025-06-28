@@ -1,4 +1,4 @@
-package com.example.designsystem.component
+package com.example.designsystem.component.status
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize

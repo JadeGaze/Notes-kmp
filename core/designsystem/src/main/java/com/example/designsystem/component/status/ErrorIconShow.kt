@@ -1,4 +1,4 @@
-package com.example.designsystem.component
+package com.example.designsystem.component.status
 
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme

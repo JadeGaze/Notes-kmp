@@ -1,9 +1,9 @@
 package com.example.feature.folders.impl.presentation.model
 
-import com.example.designsystem.SectionData
 import com.example.designsystem.ViewEvent
 import com.example.designsystem.ViewSideEffect
 import com.example.designsystem.ViewState
+import com.example.designsystem.model.SectionData
 
 class FoldersContract {
 
