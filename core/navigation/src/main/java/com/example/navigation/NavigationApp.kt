@@ -1,7 +1,9 @@
 package com.example.navigation
 
+import android.os.Bundle
 import android.util.Log
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.navigation.NavController
@@ -12,6 +14,7 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.example.navigation.Navigation.Args.FOLDERS
 import com.example.navigation.Navigation.Args.FOLDER_ID
+import com.example.navigation.Navigation.Args.NOTE
 import com.example.navigation.Navigation.Args.NOTES
 import com.example.navigation.Navigation.Args.NOTE_ID
 import com.example.navigation.Navigation.Args.USER_ID
@@ -26,6 +29,9 @@ import com.example.navigation.destination.NotesScreenDestination
 import com.example.navigation.destination.SignInScreenDestination
 import com.example.navigation.destination.SignUpScreenDestination
 import com.example.shared.feature.auth.ui.SignInViewModel
+import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.analytics.ktx.analytics
+import com.google.firebase.ktx.Firebase
 import org.koin.androidx.compose.koinViewModel
 
 @Composable
@@ -35,6 +41,14 @@ fun NavigationApp() {
     val authViewModel: SignInViewModel = koinViewModel()
 
     val authUserId by authViewModel.userId.collectAsState()
+
+    val currentRoute =
+        navController.currentBackStackEntryFlow.collectAsState(initial = navController.currentBackStackEntry)
+
+    LaunchedEffect(currentRoute.value?.destination?.route) {
+        val screenName = currentRoute.value?.destination?.route ?: "unknown_screen"
+        logScreenView(screenName)
+    }
 
     NavHost(navController = navController, startDestination = SIGN_IN) {
         composable(route = SIGN_IN) {
@@ -98,6 +112,43 @@ fun NavigationApp() {
 
 }
 
+fun logScreenView(route: String) {
+    val firebaseAnalytics = Firebase.analytics
+
+    val screenName = when (route) {
+        SIGN_IN -> {
+            SIGN_IN
+        }
+
+        SIGN_UP -> {
+            SIGN_UP
+        }
+
+        FOLDERS_PATH -> {
+            FOLDERS
+        }
+
+        NOTE_PATH -> {
+            NOTE
+        }
+
+        NOTES_PATH -> {
+            NOTES
+        }
+
+        else -> {
+            "unknown_screen"
+        }
+    }
+
+    val bundle = Bundle().apply {
+        putString(FirebaseAnalytics.Param.SCREEN_NAME, screenName)
+        putString(FirebaseAnalytics.Param.SCREEN_CLASS, screenName)
+    }
+    firebaseAnalytics.logEvent(FirebaseAnalytics.Event.SCREEN_VIEW, bundle)
+    firebaseAnalytics.logEvent("launch_$screenName", null)
+    Log.d("LOG EVEN ANALYTICS", "launch_$screenName")
+}
 
 object Navigation {
 
@@ -107,6 +158,7 @@ object Navigation {
         const val NOTE_ID = "note_id"
         const val NOTES = "notes"
         const val FOLDERS = "folders"
+        const val NOTE = "note"
     }
 
     object Routes {

@@ -24,7 +24,9 @@ It is an Android note-taking app designed for reliability and productivity, feat
 
 #### Architecture:
 
-- Modularization (`:shared:commonAndroid`, `:shared:commonMain`; android: `:app`, `:core:designsystem`, `:core:navigation`, `:feature:notes:impl`, `:feature:note:impl`, `:feature:folders:api`, `:feature:folders:impl`, `:feature:auth:impl`;)
+- Modularization (`:shared:commonAndroid`, `:shared:commonMain`; android: `:app`,
+  `:core:designsystem`, `:core:navigation`, `:feature:notes:impl`, `:feature:note:impl`,
+  `:feature:folders:api`, `:feature:folders:impl`, `:feature:auth:impl`;)
 - MVI
 - DI (Koin)
 

@@ -4,9 +4,7 @@ import android.util.Log
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
@@ -22,13 +20,12 @@ import androidx.compose.ui.input.key.key
 import androidx.compose.ui.input.key.onKeyEvent
 import androidx.compose.ui.input.key.type
 import androidx.compose.ui.platform.LocalFocusManager
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.example.designsystem.SIDE_EFFECTS_KEY
-import com.example.designsystem.component.NetworkError
-import com.example.designsystem.component.Progress
+import com.example.designsystem.component.status.NetworkError
+import com.example.designsystem.component.status.Progress
+import com.example.designsystem.component.MediumTitleTextField
+import com.example.designsystem.component.TextFieldFullScreen
 import com.example.shared.feature.note.ui.models.NoteContract.UiState
 import com.example.shared.feature.note.ui.models.NoteContract.Effect
 import com.example.shared.feature.note.ui.models.NoteContract.Event
@@ -119,13 +116,12 @@ fun NoteScreen(
         else -> {
 
             Column(modifier = Modifier.padding(16.dp)) {
-                BasicTextField(
+                MediumTitleTextField(
                     value = noteTitle.value,
                     onValueChange = {
                         noteTitle.value = it
                         noteTitleFlow.value = it
                     },
-                    singleLine = true,
                     modifier = Modifier
                         .focusRequester(focusRequester)
                         .onKeyEvent {
@@ -137,13 +133,10 @@ fun NoteScreen(
                             }
                         }
                         .focusable(),
-                    textStyle = TextStyle(fontWeight = FontWeight.Bold, fontSize = 24.sp),
                 )
-                BasicTextField(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .padding(vertical = 8.dp, horizontal = 16.dp),
-                    value = noteText.value, onValueChange = {
+                TextFieldFullScreen(
+                    value = noteText.value,
+                    onValueChange = {
                         noteText.value = it
                         noteTextFlow.value = it
                     }
