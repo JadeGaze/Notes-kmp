@@ -7,6 +7,7 @@ plugins {
     alias(libs.plugins.kotlinCocoapods)
 //    alias(libs.plugins.compose.compiler)
     id("com.google.devtools.ksp")
+    alias(libs.plugins.rickclephas)
 }
 
 kotlin {
@@ -66,6 +67,10 @@ kotlin {
 // common to share sources between related targets.
 // See: https://kotlinlang.org/docs/multiplatform-hierarchy.html
     sourceSets {
+        all {
+            languageSettings.optIn("kotlinx.cinterop.ExperimentalForeignApi")
+            languageSettings.optIn("kotlin.experimental.ExperimentalObjCName")
+        }
         commonMain {
             dependencies {
                 implementation(libs.kotlin.stdlib)
@@ -81,6 +86,7 @@ kotlin {
                 implementation(libs.bundles.koin.kmp)
 
                 implementation(libs.androidx.lifecycle.viewmodel)
+                api(libs.rickclephas.kmp)
             }
         }
 
@@ -133,6 +139,7 @@ kotlin {
             baseName = "CommonKmp"
             export(libs.kotlinx.coroutines.core)
             isStatic = true
+            export(libs.rickclephas.kmp)
         }
 
     }

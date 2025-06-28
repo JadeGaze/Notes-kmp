@@ -9,6 +9,7 @@ import com.example.shared.feature.auth.domain.usecase.validators.IsPasswordValid
 import com.example.shared.feature.auth.ui.model.SignUpContract.Event
 import com.example.shared.feature.auth.ui.model.SignUpContract.Effect
 import com.example.shared.feature.auth.ui.model.SignUpContract.UiState
+import com.rickclephas.kmp.observableviewmodel.launch
 import dev.gitlive.firebase.FirebaseNetworkException
 import dev.gitlive.firebase.auth.FirebaseAuthException
 import kotlinx.coroutines.launch

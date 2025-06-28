@@ -2,10 +2,15 @@ package com.example.shared.core.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.rickclephas.kmp.nativecoroutines.NativeCoroutines
+import com.rickclephas.kmp.nativecoroutines.NativeCoroutinesState
+import com.rickclephas.kmp.observableviewmodel.launch
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableSharedFlow
+import com.rickclephas.kmp.observableviewmodel.stateIn
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.launch
 
@@ -24,12 +29,23 @@ abstract class BaseViewModel<Event : ViewEvent, UiState : ViewState, Effect : Vi
     private val initialState: UiState by lazy { setInitialState() }
 
     private val _viewState = MutableStateFlow(initialState)
-    val viewState: StateFlow<UiState> = _viewState
+
+    @NativeCoroutinesState
+    val viewState = _viewState.asStateFlow()
 
     private val _event: MutableSharedFlow<Event> = MutableSharedFlow()
 
     private val _sideEffect: Channel<Effect> = Channel()
+
+    @NativeCoroutines
     val effect = _sideEffect.receiveAsFlow()
+
+//    @NativeCoroutinesState
+//    val effectIos = _sideEffect.receiveAsFlow().stateIn(
+//        viewModelScope,
+//        SharingStarted.Eagerly,
+//        null
+//    )
 
     init {
         subscribeToEvents()

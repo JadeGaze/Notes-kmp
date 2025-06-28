@@ -11,6 +11,7 @@ import com.example.shared.feature.notes.domain.usecase.GetNotesByFolderIdUseCase
 import com.example.shared.feature.notes.ui.model.NotesContract.UiState
 import com.example.shared.feature.notes.ui.model.NotesContract.Event
 import com.example.shared.feature.notes.ui.model.NotesContract.Effect
+import com.rickclephas.kmp.observableviewmodel.launch
 import kotlinx.coroutines.launch
 
 class NotesViewModel(

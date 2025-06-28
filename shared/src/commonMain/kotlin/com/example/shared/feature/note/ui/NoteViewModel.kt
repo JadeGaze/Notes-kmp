@@ -11,6 +11,7 @@ import com.example.shared.feature.note.ui.models.NoteContract.Event
 import com.example.shared.feature.note.ui.models.NoteContract.Effect
 import com.example.shared.feature.note.ui.models.NoteContract.UiState
 import com.example.shared.feature.note.ui.models.NoteItemUiModel
+import com.rickclephas.kmp.observableviewmodel.launch
 import kotlinx.coroutines.launch
 
 

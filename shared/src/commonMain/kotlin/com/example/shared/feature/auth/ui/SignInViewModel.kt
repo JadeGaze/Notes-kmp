@@ -8,6 +8,8 @@ import com.example.shared.feature.auth.domain.usecase.SignInUseCase
 import com.example.shared.feature.auth.ui.model.SignInContract.Event
 import com.example.shared.feature.auth.ui.model.SignInContract.UiState
 import com.example.shared.feature.auth.ui.model.SignInContract.Effect
+import com.rickclephas.kmp.nativecoroutines.NativeCoroutinesState
+import com.rickclephas.kmp.observableviewmodel.launch
 import dev.gitlive.firebase.FirebaseNetworkException
 import dev.gitlive.firebase.auth.FirebaseAuthException
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -21,11 +23,11 @@ class SignInViewModel(
 ) : BaseViewModel<Event, UiState, Effect>() {
 
     private val _userId = MutableStateFlow<String?>(null)
+    @NativeCoroutinesState
     val userId: StateFlow<String?> = _userId
 
     init {
         isAuth()
-
     }
 
     override fun setInitialState(): UiState {

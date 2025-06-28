@@ -1,6 +1,5 @@
 package com.example.shared.feature.auth
 
-import androidx.lifecycle.viewmodel.viewModelFactory
 import com.example.auth.api.usecase.SignUpUseCase
 import com.example.auth.api.usecase.validators.IsEmailValidUseCase
 import com.example.auth.api.usecase.validators.IsNotEmptyStringUseCase

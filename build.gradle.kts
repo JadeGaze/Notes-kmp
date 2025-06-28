@@ -12,7 +12,7 @@ plugins {
     alias(libs.plugins.jetbrainsKotlinAndroid) apply false
     alias(libs.plugins.androidLibrary) apply false
     alias(libs.plugins.room) apply false
-    id("com.google.devtools.ksp") version "2.0.0-1.0.24" apply false
+    id("com.google.devtools.ksp") version "2.1.0-1.0.29" apply false
     id("com.google.gms.google-services") version "4.4.2" apply false
     alias(libs.plugins.kotlinMultiplatform) apply false
     alias(libs.plugins.androidKotlinMultiplatformLibrary) apply false

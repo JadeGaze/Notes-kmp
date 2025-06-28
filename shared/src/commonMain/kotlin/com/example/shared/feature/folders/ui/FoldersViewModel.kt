@@ -9,6 +9,7 @@ import com.example.shared.feature.folders.ui.model.FolderUiModel
 import com.example.shared.feature.folders.ui.model.FoldersContract.UiState
 import com.example.shared.feature.folders.ui.model.FoldersContract.Effect
 import com.example.shared.feature.folders.ui.model.FoldersContract.Event
+import com.rickclephas.kmp.observableviewmodel.launch
 import kotlinx.coroutines.launch
 
 class FoldersViewModel(

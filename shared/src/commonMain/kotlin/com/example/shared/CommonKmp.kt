@@ -1,10 +1,19 @@
 package com.example.shared
 
+import com.example.shared.feature.auth.authModule
+import com.example.shared.feature.auth.ui.SignInViewModel
+import com.example.shared.feature.folders.foldersModule
+import com.example.shared.feature.note.noteModule
+import com.example.shared.feature.notes.notesModule
 import org.koin.core.context.startKoin
 import org.koin.dsl.KoinAppDeclaration
 import org.koin.dsl.module
+import org.koin.mp.KoinPlatform.getKoin
 
 object CommonKmp {
+
+    @Throws(Exception::class)
+    fun getSignInViewModel(): SignInViewModel = getKoin().get()
 
     fun initKoin(
         configuration: Configuration,
@@ -20,6 +29,13 @@ object CommonKmp {
                 // 2 варианта
 //                storageModule,
                 platformModule(),
+                authModule,
+                foldersModule,
+                noteModule,
+                notesModule,
+
+
+
 
 //                featureModule,
             )

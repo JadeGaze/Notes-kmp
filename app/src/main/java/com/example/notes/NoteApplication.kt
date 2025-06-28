@@ -5,6 +5,7 @@ import com.example.auth.impl.presentation.authPresentationModule
 import com.example.feature.folders.impl.foldersPresentationModel
 import com.example.impl.notePresentationModule
 import com.example.notes.impl.notesPresentationModule
+import com.example.shared.CommonKmp
 import com.example.shared.dbModule
 import com.example.shared.feature.auth.authModule
 import com.example.shared.feature.folders.foldersModule
