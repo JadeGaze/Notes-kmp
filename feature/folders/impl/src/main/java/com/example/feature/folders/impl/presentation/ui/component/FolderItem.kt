@@ -1,6 +1,5 @@
 package com.example.feature.folders.impl.presentation.ui.component
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -10,6 +9,8 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -27,13 +28,13 @@ fun FolderItem(modifier: Modifier = Modifier, data: FolderUiModel, isDivider: Bo
         Row(
             modifier = modifier
                 .fillMaxWidth()
-                .background(Color.White)
+                .background(MaterialTheme.colorScheme.primaryContainer)
                 .height(IntrinsicSize.Max)
                 .padding(vertical = 8.dp, horizontal = 8.dp),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Image(
+            Icon(
                 modifier = Modifier.padding(8.dp),
                 painter = painterResource(id = data.iconId?: R.drawable.outline_folder_24),
                 contentDescription = ""
@@ -41,13 +42,15 @@ fun FolderItem(modifier: Modifier = Modifier, data: FolderUiModel, isDivider: Bo
             Text(
                 modifier = Modifier.weight(1f),
                 textAlign = TextAlign.Start,
-                text = data.name
+                text = data.name,
+                color = MaterialTheme.colorScheme.primary
             )
-            Text(text = data.notesNumber.toString())
-            Image(
+            Text(text = data.notesNumber.toString(), color = MaterialTheme.colorScheme.primary)
+            Icon(
                 painter = painterResource(id = R.drawable.outline_keyboard_arrow_right_24),
                 contentDescription = "",
-                modifier = Modifier.padding(8.dp)
+                modifier = Modifier.padding(8.dp),
+                tint = MaterialTheme.colorScheme.primary
             )
         }
         if (isDivider) {

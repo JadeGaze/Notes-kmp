@@ -1,3 +1,6 @@
+import io.gitlab.arturbosch.detekt.Detekt
+import io.gitlab.arturbosch.detekt.DetektCreateBaselineTask
+
 buildscript {
     dependencies {
         classpath(libs.gradle)
@@ -18,4 +21,28 @@ plugins {
     alias(libs.plugins.androidKotlinMultiplatformLibrary) apply false
     alias(libs.plugins.compose.compiler) apply false
     alias(libs.plugins.kotlinCocoapods) apply false
+
+    id("io.gitlab.arturbosch.detekt") version("1.23.8")
+}
+
+detekt {
+    toolVersion = "1.23.8"
+    config.setFrom(files("$projectDir/detekt.yml"))
+    buildUponDefaultConfig = true
+}
+
+subprojects {
+    apply(plugin = "io.gitlab.arturbosch.detekt")
+}
+
+tasks.register("lintAll") {
+    dependsOn("detekt")
+//    dependsOn("swiftlint")    TODO: раскомментировать строку после добавления swiftlint'а
+}
+// Kotlin DSL
+tasks.withType<Detekt>().configureEach {
+    jvmTarget = "17"
+}
+tasks.withType<DetektCreateBaselineTask>().configureEach {
+    jvmTarget = "17"
 }

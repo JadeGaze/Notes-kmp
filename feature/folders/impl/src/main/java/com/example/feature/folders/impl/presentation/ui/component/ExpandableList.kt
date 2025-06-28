@@ -7,10 +7,10 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateMapOf
 import androidx.compose.runtime.saveable.Saver
@@ -20,6 +20,8 @@ import androidx.compose.runtime.toMutableStateMap
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
+import com.example.designsystem.theme.ExtraShapes.FirstItemShape
+import com.example.designsystem.theme.ExtraShapes.LastItemShape
 import com.example.shared.core.common.SectionData
 import com.example.shared.core.common.SectionItem
 import com.example.shared.feature.folders.ui.model.FolderUiModel
@@ -35,7 +37,7 @@ fun ExpandableList(
     }
 
     LazyColumn(
-        modifier = modifier
+        modifier = modifier.padding(horizontal = 16.dp)
     ) {
         sectionData.onEachIndexed { index, sectionData ->
             this.section(
@@ -66,11 +68,11 @@ fun LazyListScope.section(
     itemsIndexed(sectionData.items) { index, item ->
         val modifier = when (index) {
             0 -> {
-                Modifier.clip(RoundedCornerShape(24.dp, 24.dp, 0.dp, 0.dp))
+                Modifier.clip(FirstItemShape)
             }
 
             sectionData.items.lastIndex -> {
-                Modifier.clip(RoundedCornerShape(0.dp, 0.dp, 24.dp, 24.dp))
+                Modifier.clip(LastItemShape)
             }
 
             else -> {

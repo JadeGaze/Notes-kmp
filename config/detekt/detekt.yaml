@@ -1,0 +1,12 @@
+build:
+  maxIssues: 10
+  weights:
+    complexity: 2
+    LongParameterList: 1
+    style: 1
+
+naming:
+  VariableNaming:
+    active: true
+    pattern: '[a-z][a-zA-Z0-9]*'
+    threshold: 30

@@ -1,6 +1,5 @@
 package com.example.feature.folders.impl.presentation.ui.component
 
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.IntrinsicSize
@@ -8,6 +7,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Icon
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
@@ -35,12 +36,14 @@ fun SectionHeader(sectionData: SectionData, isExpanded: Boolean, onHeaderClick: 
             modifier = Modifier
                 .weight(1.0f),
             text = sectionData.header,
+            color = MaterialTheme.colorScheme.primary
         )
         val rotate = if (isExpanded) 90F else 0F
-        Image(
+        Icon(
             modifier = Modifier.rotate(rotate),
             painter = painterResource(R.drawable.outline_keyboard_arrow_right_24),
-            contentDescription = ""
+            contentDescription = "",
+            tint = MaterialTheme.colorScheme.primary
         )
     }
 
