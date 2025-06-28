@@ -4,7 +4,7 @@ plugins {
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
     id("com.google.firebase.firebase-perf")
-    id("io.gitlab.arturbosch.detekt") version ("1.23.7")
+    id("io.gitlab.arturbosch.detekt") version ("1.23.8")
     alias(libs.plugins.compose.compiler)
 }
 
@@ -43,9 +43,6 @@ android {
     }
     buildFeatures {
         compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.2"
     }
     packaging {
         resources {
